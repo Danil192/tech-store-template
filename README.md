@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TechStore Template
 
-## Getting Started
+Шаблон интернет-магазина электроники, созданный для FLUW.
 
-First, run the development server:
+## Стек технологий
 
-```bash
+- **Next.js 14** - React фреймворк с App Router
+- **TypeScript** - типизация
+- **Tailwind CSS** - стилизация
+- **shadcn/ui** - UI компоненты
+- **Zustand** - управление состоянием
+- **Framer Motion** - анимации
+
+## Архитектура (FSD)
+
+src/
+├── app/ # Next.js страницы
+├── entities/ # Сущности (product, cart, category)
+├── features/ # Фичи (add-to-cart, filter)
+├── widgets/ # Виджеты (header, footer, product-list)
+├── shared/ # Общий код (ui, lib, hooks)
+└── pages/ # Дополнительные страницы
+
+
+## Быстрый старт
+
+# Установка зависимостей
+npm install
+
+# Запуск разработки
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Сборка продакшена
+npm run build
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# Запуск продакшена
+npm start
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+## Структура проекта
 
-To learn more about Next.js, take a look at the following resources:
+# Entities
+- **product** - товары (типы, данные, карточка)
+- **category** - категории
+- **cart** - корзина (Zustand store, хуки)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Features
+- **add-to-cart** - добавление в корзину
+- **add-to-favorite** - избранное
+- **filter-products** - фильтрация товаров
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Widgets
+- **header** - хедер с корзиной
+- **footer** - футер
+- **product-list** - список товаров
+- **product-filters** - фильтры каталога
 
-## Deploy on Vercel
+## Shared
+- **ui** - shadcn компоненты
+- **lib** - утилиты (cn, анимации)
+- **hooks** - общие хуки
+- **config** - конфигурация
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## СТРАНИЦЫ ДЛЯ ТЕСТИРОВАНИЯ
+
+Главная - http://localhost:3000/
+Каталог - http://localhost:3000/catalog
+Товар - http://localhost:3000/product/1
+Корзина - http://localhost:3000/cart
+О нас - http://localhost:3000/about
+Контакты - http://localhost:3000/contact
+404 - http://localhost:3000/anything
