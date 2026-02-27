@@ -8,8 +8,9 @@ export function useCart() {
   const removeItem = useCartStore((state) => state.removeItem)
   const updateQuantity = useCartStore((state) => state.updateQuantity)
   const clearCart = useCartStore((state) => state.clearCart)
-  const getTotal = useCartStore((state) => state.getTotal())
-  const getCount = useCartStore((state) => state.getCount())
+  
+  const getTotalFn = useCartStore((state) => state.getTotal)
+  const getCountFn = useCartStore((state) => state.getCount)
 
   const addToCart = (product: Product) => {
     addItem({ ...product, quantity: 1 })
@@ -30,8 +31,8 @@ export function useCart() {
     removeFromCart: removeItem,
     updateQuantity,
     clearCart,
-    getTotal,
-    getCount,
+    getTotal: () => getTotalFn(),
+    getCount: () => getCountFn(),
     isInCart,
     getItemQuantity,
   }

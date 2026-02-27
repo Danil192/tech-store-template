@@ -11,31 +11,10 @@
 - **Zustand** - управление состоянием
 - **Framer Motion** - анимации
 
-## Архитектура (FSD)
+## Старт проекта
 
-src/
-├── app/ # Next.js страницы
-├── entities/ # Сущности (product, cart, category)
-├── features/ # Фичи (add-to-cart, filter)
-├── widgets/ # Виджеты (header, footer, product-list)
-├── shared/ # Общий код (ui, lib, hooks)
-└── pages/ # Дополнительные страницы
-
-
-## Быстрый старт
-
-# Установка зависимостей
-npm install
-
-# Запуск разработки
-npm run dev
-
-# Сборка продакшена
-npm run build
-
-# Запуск продакшена
-npm start
-
+- npm install
+- npm run dev
 
 ## Структура проекта
 
@@ -46,7 +25,6 @@ npm start
 
 # Features
 - **add-to-cart** - добавление в корзину
-- **add-to-favorite** - избранное
 - **filter-products** - фильтрация товаров
 
 ## Widgets
@@ -64,10 +42,10 @@ npm start
 
 ## СТРАНИЦЫ ДЛЯ ТЕСТИРОВАНИЯ
 
-Главная - http://localhost:3000/
-Каталог - http://localhost:3000/catalog
-Товар - http://localhost:3000/product/1
-Корзина - http://localhost:3000/cart
-О нас - http://localhost:3000/about
-Контакты - http://localhost:3000/contact
-404 - http://localhost:3000/anything
+- Главная - http://localhost:3000/
+- Каталог - http://localhost:3000/catalog
+- Товар - http://localhost:3000/product/1
+- Корзина - http://localhost:3000/cart
+- О нас - http://localhost:3000/about
+- Контакты - http://localhost:3000/contact
+- 404 - http://localhost:3000/anything

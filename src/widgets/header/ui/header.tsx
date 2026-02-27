@@ -8,10 +8,15 @@ import { Sheet, SheetContent, SheetTrigger } from "@shared/ui/sheet"
 import { useCart } from "@entities/cart/hooks/use-cart"
 import { CartSheet } from "./cart-sheet"
 import { motion } from "framer-motion"
+import { useState, useEffect } from "react"
 
 export function Header() {
   const { getCount } = useCart()
-  const cartCount = getCount()
+  const [cartCount, setCartCount] = useState(0)
+  
+  useEffect(() => {
+    setCartCount(getCount())
+  }, [getCount])
 
   return (
     <motion.header
@@ -22,19 +27,11 @@ export function Header() {
     >
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <div className="flex items-center gap-6">
-          <Link href="/" className="text-xl font-bold">
-            TechStore
-          </Link>
+          <Link href="/" className="text-xl font-bold">TechStore</Link>
           <nav className="hidden md:flex items-center gap-4">
-            <Link href="/catalog" className="text-sm text-muted-foreground hover:text-foreground">
-              Каталог
-            </Link>
-            <Link href="/about" className="text-sm text-muted-foreground hover:text-foreground">
-              О нас
-            </Link>
-            <Link href="/contact" className="text-sm text-muted-foreground hover:text-foreground">
-              Контакты
-            </Link>
+            <Link href="/catalog" className="text-sm text-muted-foreground hover:text-foreground">Каталог</Link>
+            <Link href="/about" className="text-sm text-muted-foreground hover:text-foreground">О нас</Link>
+            <Link href="/contact" className="text-sm text-muted-foreground hover:text-foreground">Контакты</Link>
           </nav>
         </div>
 
@@ -63,15 +60,9 @@ export function Header() {
             </SheetTrigger>
             <SheetContent side="left">
               <nav className="flex flex-col gap-4 mt-8">
-                <Link href="/catalog" className="text-lg">
-                  Каталог
-                </Link>
-                <Link href="/about" className="text-lg">
-                  О нас
-                </Link>
-                <Link href="/contact" className="text-lg">
-                  Контакты
-                </Link>
+                <Link href="/catalog" className="text-lg">Каталог</Link>
+                <Link href="/about" className="text-lg">О нас</Link>
+                <Link href="/contact" className="text-lg">Контакты</Link>
               </nav>
             </SheetContent>
           </Sheet>

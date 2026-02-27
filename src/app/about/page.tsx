@@ -1,3 +1,5 @@
+"use client"
+
 import { motion } from "framer-motion"
 
 export default function AboutPage() {
@@ -11,7 +13,7 @@ export default function AboutPage() {
       >
         <h1 className="text-4xl font-bold mb-6">О нас</h1>
         <p className="text-lg text-muted-foreground mb-8">
-          TechStore — ваш надёжный партнер в мире электроники с 2024 года.
+          TechStore - ваш надёжный партнер в мире электроники с 2026 года.
         </p>
 
         <div className="space-y-8">

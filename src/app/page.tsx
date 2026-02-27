@@ -1,3 +1,5 @@
+"use client"
+
 import { products, categories } from "@entities/product"
 import { ProductCard } from "@entities/product"
 import { Button } from "@shared/ui/button"

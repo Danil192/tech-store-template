@@ -1,23 +1,36 @@
+"use client"
+
+import { use } from "react"
 import { products } from "@entities/product"
 import { ProductCard } from "@entities/product"
 import { AddToCartButton } from "@features/add-to-cart"
 import { Badge } from "@shared/ui/badge"
 import { Star } from "lucide-react"
 import Image from "next/image"
-import { notFound } from "next/navigation"
+import Link from "next/link"
 import { motion } from "framer-motion"
 
 interface ProductPageProps {
-  params: {
-    id: string
-  }
+  params: Promise<{ id: string }>
 }
 
 export default function ProductPage({ params }: ProductPageProps) {
-  const product = products.find((p) => p.id === Number(params.id))
+  // Распаковываем Promise с помощью use()
+  const { id } = use(params)
+  
+  const product = products.find((p) => p.id === Number(id))
 
   if (!product) {
-    notFound()
+    return (
+      <div className="container mx-auto px-4 py-24 text-center">
+        <h1 className="text-3xl font-bold mb-4">Товар не найден</h1>
+        <Link href="/catalog">
+          <button className="px-4 py-2 bg-blue-600 text-white rounded">
+            Вернуться в каталог
+          </button>
+        </Link>
+      </div>
+    )
   }
 
   const relatedProducts = products
@@ -38,7 +51,6 @@ export default function ProductPage({ params }: ProductPageProps) {
             alt={product.name}
             fill
             className="object-cover"
-            priority
           />
         </motion.div>
 
@@ -124,8 +136,8 @@ export default function ProductPage({ params }: ProductPageProps) {
         >
           <h2 className="text-2xl font-bold mb-6">Похожие товары</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {relatedProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
+            {relatedProducts.map((p) => (
+              <ProductCard key={p.id} product={p} />
             ))}
           </div>
         </motion.div>

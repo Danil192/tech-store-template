@@ -7,7 +7,7 @@ import { Footer } from "@widgets/footer"
 const inter = Inter({ subsets: ["latin", "cyrillic"] })
 
 export const metadata: Metadata = {
-  title: "TechStore — Магазин электроники",
+  title: "TechStore - Магазин электроники",
   description: "Лучшая техника по выгодным ценам",
 }
 

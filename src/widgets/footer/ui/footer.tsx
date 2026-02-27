@@ -1,6 +1,7 @@
+"use client"
+
 import Link from "next/link"
 import { Github, Twitter, Instagram, Mail, Phone } from "lucide-react"
-import { Github, Twitter, Instagram, Mail } from "lucide-react"
 import { motion } from "framer-motion"
 
 export function Footer() {
@@ -16,7 +17,7 @@ export function Footer() {
           <div>
             <h3 className="text-lg font-bold mb-4">TechStore</h3>
             <p className="text-sm text-muted-foreground">
-              Ваш надёжный магазин электроники с 2024 года
+              Ваш надёжный магазин электроники с 2026 года
             </p>
           </div>
 

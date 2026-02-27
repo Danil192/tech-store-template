@@ -1,4 +1,4 @@
-"use client"
+"use client" 
 
 import { Button } from "@shared/ui/button"
 import { useCart } from "@entities/cart/hooks/use-cart"

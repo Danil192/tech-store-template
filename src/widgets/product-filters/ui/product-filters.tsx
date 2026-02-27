@@ -5,7 +5,7 @@ import { Checkbox } from "@shared/ui/checkbox"
 import { Label } from "@shared/ui/label"
 import { Slider } from "@shared/ui/slider"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@shared/ui/select"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 
 interface ProductFiltersProps {
@@ -20,7 +20,7 @@ export function ProductFilters({ categories }: ProductFiltersProps) {
   const brands = ["Apple", "Samsung", "Sony", "Xiaomi", "Huawei"]
 
   const handleFilterChange = (key: string, value: string | boolean) => {
-    const params = new URLSearchParams(searchParams.toString())
+    const params = new URLSearchParams(searchParams?.toString() || "")
     
     if (value === false || value === "") {
       params.delete(key)
@@ -31,6 +31,10 @@ export function ProductFilters({ categories }: ProductFiltersProps) {
     router.push(`/catalog?${params.toString()}`)
   }
 
+  const getCategoryParam = () => searchParams?.get("category") || ""
+  const getBrandParam = () => searchParams?.get("brand") || ""
+  const getSortByParam = () => searchParams?.get("sortBy") || "popular"
+
   return (
     <div className="space-y-6">
       <div>
@@ -40,7 +44,7 @@ export function ProductFilters({ categories }: ProductFiltersProps) {
             <div key={category.id} className="flex items-center space-x-2">
               <Checkbox
                 id={category.slug}
-                checked={searchParams.get("category") === category.slug}
+                checked={getCategoryParam() === category.slug}
                 onCheckedChange={(checked) =>
                   handleFilterChange("category", checked ? category.slug : "")
                 }
@@ -60,7 +64,7 @@ export function ProductFilters({ categories }: ProductFiltersProps) {
             <div key={brand} className="flex items-center space-x-2">
               <Checkbox
                 id={brand}
-                checked={searchParams.get("brand") === brand}
+                checked={getBrandParam() === brand}
                 onCheckedChange={(checked) =>
                   handleFilterChange("brand", checked ? brand : "")
                 }
@@ -77,7 +81,11 @@ export function ProductFilters({ categories }: ProductFiltersProps) {
         <h3 className="font-semibold mb-3">Цена</h3>
         <Slider
           value={priceRange}
-          onValueChange={setPriceRange}
+          onValueChange={(value) => {
+            setPriceRange(value)
+            handleFilterChange("minPrice", value[0].toString())
+            handleFilterChange("maxPrice", value[1].toString())
+          }}
           max={200000}
           step={1000}
           className="mb-2"
@@ -91,7 +99,7 @@ export function ProductFilters({ categories }: ProductFiltersProps) {
       <div>
         <h3 className="font-semibold mb-3">Сортировка</h3>
         <Select
-          value={searchParams.get("sortBy") || "popular"}
+          value={getSortByParam()}
           onValueChange={(value) => handleFilterChange("sortBy", value)}
         >
           <SelectTrigger>

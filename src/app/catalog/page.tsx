@@ -2,18 +2,22 @@ import { products, categories } from "@entities/product"
 import { ProductCard } from "@entities/product"
 import { ProductFilters } from "@widgets/product-filters"
 import { ProductList } from "@widgets/product-list"
+import { use } from "react"
 
 interface CatalogPageProps {
-  searchParams: {
+  searchParams: Promise<{
     category?: string
     brand?: string
     minPrice?: string
     maxPrice?: string
     sortBy?: string
-  }
+  }>
 }
 
-export default function CatalogPage({ searchParams }: CatalogPageProps) {
+export default async function CatalogPage({ searchParams }: CatalogPageProps) {
+
+  const params = await searchParams
+  
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-8">Каталог</h1>
@@ -22,7 +26,7 @@ export default function CatalogPage({ searchParams }: CatalogPageProps) {
           <ProductFilters categories={categories} />
         </aside>
         <main className="flex-1">
-          <ProductList products={products} searchParams={searchParams} />
+          <ProductList products={products} searchParams={params} />
         </main>
       </div>
     </div>

@@ -4,6 +4,7 @@ import { useCart } from "@entities/cart/hooks/use-cart"
 import { Button } from "@shared/ui/button"
 import { ScrollArea } from "@shared/ui/scroll-area"
 import { Separator } from "@shared/ui/separator"
+import { DialogTitle } from "@shared/ui/dialog" 
 import { Trash2, Plus, Minus } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
@@ -14,6 +15,8 @@ export function CartSheet() {
   if (items.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center h-full py-12">
+        <DialogTitle className="sr-only">Корзина</DialogTitle>
+        
         <p className="text-muted-foreground mb-4">Корзина пуста</p>
         <Link href="/catalog">
           <Button>Перейти в каталог</Button>
@@ -24,6 +27,8 @@ export function CartSheet() {
 
   return (
     <div className="flex flex-col h-full">
+      <DialogTitle className="sr-only">Корзина</DialogTitle>
+      
       <div className="flex-1">
         <h2 className="text-lg font-semibold mb-4">Корзина</h2>
         <ScrollArea className="h-[calc(100vh-200px)]">

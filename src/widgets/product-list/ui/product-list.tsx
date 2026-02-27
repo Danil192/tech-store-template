@@ -2,7 +2,7 @@
 
 import { Product } from "@entities/product"
 import { ProductCard } from "@entities/product"
-import { useEffect, useState } from "react"
+import { useMemo } from "react"
 
 interface ProductListProps {
   products: Product[]
@@ -16,36 +16,34 @@ interface ProductListProps {
 }
 
 export function ProductList({ products, searchParams }: ProductListProps) {
-  const [filteredProducts, setFilteredProducts] = useState<Product[]>(products)
-
-  useEffect(() => {
+  const filteredProducts = useMemo(() => {
     let result = [...products]
 
-    if (searchParams.category) {
+    if (searchParams?.category) {
       result = result.filter((p) => p.category === searchParams.category)
     }
 
-    if (searchParams.brand) {
+    if (searchParams?.brand) {
       result = result.filter((p) => p.brand === searchParams.brand)
     }
 
-    if (searchParams.minPrice) {
+    if (searchParams?.minPrice) {
       result = result.filter((p) => p.price >= Number(searchParams.minPrice))
     }
 
-    if (searchParams.maxPrice) {
+    if (searchParams?.maxPrice) {
       result = result.filter((p) => p.price <= Number(searchParams.maxPrice))
     }
 
-    if (searchParams.sortBy === "price-asc") {
+    if (searchParams?.sortBy === "price-asc") {
       result.sort((a, b) => a.price - b.price)
-    } else if (searchParams.sortBy === "price-desc") {
+    } else if (searchParams?.sortBy === "price-desc") {
       result.sort((a, b) => b.price - a.price)
-    } else if (searchParams.sortBy === "rating") {
+    } else if (searchParams?.sortBy === "rating") {
       result.sort((a, b) => b.rating - a.rating)
     }
 
-    setFilteredProducts(result)
+    return result
   }, [products, searchParams])
 
   if (filteredProducts.length === 0) {
